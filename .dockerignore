@@ -1,0 +1,15 @@
+node_modules
+dist
+uploads
+.env
+.env.*
+.git
+.gitignore
+*.md
+test
+coverage
+.vscode
+.cursor
+.agents
+.claude
+.devin
