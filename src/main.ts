@@ -12,8 +12,13 @@ async function bootstrap() {
   app.use(helmet({ crossOriginResourcePolicy: { policy: 'cross-origin' } }));
   app.use(cookieParser());
   app.useStaticAssets(join(process.cwd(), 'uploads'), { prefix: '/uploads/' });
+  const corsOrigins = (process.env.FRONTEND_URL || 'http://localhost:3000')
+    .split(',')
+    .map((origin) => origin.trim())
+    .filter(Boolean);
+
   app.enableCors({
-    origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+    origin: corsOrigins.length === 1 ? corsOrigins[0] : corsOrigins,
     credentials: true,
   });
 
